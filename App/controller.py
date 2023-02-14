@@ -44,13 +44,16 @@ def new_controller():
 
 # Funciones para la carga de datos
 
-def load_data(control, filename):
+def load_data(control, filename): ###CAMBIOS CARGA DE DATOS###
     """
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-    pass
-
+    datafile = cf.data_dir + filename
+    input_file = csv.DictReader(open(datafile, encoding='utf-8'))
+    for data in input_file:
+        model.add_data(control, data)
+    return model.data_size(control), model.codigoActividadEconomicaSize(control)
 
 # Funciones de ordenamiento
 

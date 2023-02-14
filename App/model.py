@@ -70,6 +70,9 @@ def add_data(data_structs, data):
 
     return data_structs
 
+def codigoActividadEconomicaSize(control): ### CAMBIOS ### 
+    return lt.size(control['Código actividad económica'])
+
 
 # Funciones para creacion de datos
 
