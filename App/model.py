@@ -65,9 +65,11 @@ def add_data(data_structs, data):
     """
     Función para agregar nuevos elementos a la lista
     """
-    d = new_data(data["id"], data["info"])
+    d = new_data(data["Año"], data["Código actividad económica"], data["Nombre actividad económica"],
+    data["Código sector económico"], data["Nombre sector económico"], data["Código subsector económico"],
+    data["Nombre subsector económico"], data["Total ingresos netos"], data["Total costos y gastos"], 
+    data["Total saldo a pagar"], data["Total saldo a favor"])
     lt.addLast(data_structs["data"], d)
-
     return data_structs
 
 def codigoActividadEconomicaSize(control): ### CAMBIOS ### 
@@ -76,13 +78,12 @@ def codigoActividadEconomicaSize(control): ### CAMBIOS ###
 
 # Funciones para creacion de datos
 
-def new_data(id, info):
+def new_data(Año, Codigo_acti_eco,Nombre_acti_eco,Codigo_sec_eco,Nombre_sec_eco,Codigo_sub_eco,Nombre_sub_eco,Total_ing_net,Total_cst_gst,Total_sld_pag,Total_sld_fvr):
     """
     Crea una nueva estructura para modelar los datos
     """
-    data = {'id': 0, "info": ""}
-    data["id"] = id
-    data["info"] = info
+    data = {"Año":Año,"Código actividad económica":Codigo_acti_eco,"Nombre actividad económica":Nombre_acti_eco,"Código sector económico":Codigo_sec_eco,"Nombre sector económico":Nombre_sec_eco,"Código subsector económico":Codigo_sub_eco,"Nombre subsector económico":Nombre_sub_eco,"Total ingresos netos":Total_ing_net,"Total costos y gastos":Total_cst_gst,"Total saldo a pagar":Total_sld_pag,"Total saldo a favor":Total_sld_fvr}
+    
 
     return data
 
@@ -197,7 +198,8 @@ def sort_criteria(data_1, data_2):
     Returns:
         _type_: _description_
     """
-    return data_1["id"] > data_2["id"]
+
+    return data_1["Año"] > data_2["Año"]
 
 
 def sort(data_structs):

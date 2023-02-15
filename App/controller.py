@@ -44,16 +44,16 @@ def new_controller():
 
 # Funciones para la carga de datos
 
-def load_data(control, filename): ###CAMBIOS CARGA DE DATOS###
+def load_data(control): ###CAMBIOS CARGA DE DATOS###
     """
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-    datafile = cf.data_dir + filename
+    datafile = cf.data_dir + "DIAN/Salida_agregados_renta_juridicos_AG-small.csv"
     input_file = csv.DictReader(open(datafile, encoding='utf-8'))
     for data in input_file:
-        model.add_data(control, data)
-    return model.data_size(control), model.codigoActividadEconomicaSize(control)
+        answer = model.add_data(control["model"], data)
+    return answer
 
 # Funciones de ordenamiento
 
