@@ -199,8 +199,7 @@ def sort_criteria(data_1, data_2):
         _type_: _description_
     """
 
-    return data_1["Año"] > data_2["Año"]
-
+    return (data_1["Año"] > data_2["Año"])
 
 def sort(data_structs):
     """

@@ -158,7 +158,17 @@ if __name__ == "__main__":
                 print("Cargando información de los archivos ....\n")
                 data = load_data(control)
                 size = lt.size(data["data"])
-                print("El total de filas cargadas es: " + str(size))
+                last_3 = lt.getElement(data["data"],1)
+                last_2 = lt.getElement(data["data"],2)
+                last_1 = lt.getElement(data["data"],3)
+                first_1 = lt.getElement(data["data"], size)
+                first_2 = lt.getElement(data["data"], size-1)
+                first_3 = lt.getElement(data["data"], size-2)
+                print("El total de filas cargadas es: " + str(size)+"\n")
+                print("Estos son los primeros tres elementos de la lista: "+str(first_1)+" , "+str(first_2)+" , "+str(first_3)+"\n")
+                print("Estos son los últimos tres elementos de la lista: "+str(last_1)+" , "+str(last_2)+" , "+str(last_3)+"\n")
+
+
             elif int(inputs) == 2:
                 print_req_1(control)
 

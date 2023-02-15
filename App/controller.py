@@ -53,6 +53,7 @@ def load_data(control): ###CAMBIOS CARGA DE DATOS###
     input_file = csv.DictReader(open(datafile, encoding='utf-8'))
     for data in input_file:
         answer = model.add_data(control["model"], data)
+    model.sort(answer)
     return answer
 
 # Funciones de ordenamiento
