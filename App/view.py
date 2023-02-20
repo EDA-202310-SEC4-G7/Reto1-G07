@@ -37,11 +37,12 @@ operación solicitada
 """
 
 
-def new_controller():
+def new_controller(datatype):
     """
         Se crea una instancia del controlador
     """
-    control = controller.new_controller()
+    datat = datatype
+    control = controller.new_controller(datat)
     return control
 
 
@@ -57,14 +58,16 @@ def print_menu():
     print("8- Ejecutar Requerimiento 7")
     print("9- Ejecutar Requerimiento 8")
     print("10- Obtener dato dado un ID")
+    print("11- Cargar información con un TAD especifico")
     print("0- Salir")
 
 
-def load_data(control):
+def load_data(control,filesize):
     """
     Carga los datos
     """
-    data = controller.load_data(control)
+    filesizex = filesize
+    data = controller.load_data(control,filesizex)
     return data
 
 
@@ -141,7 +144,7 @@ def print_req_8(control):
 
 
 # Se crea el controlador asociado a la vista
-control = new_controller()
+control = new_controller(1)
 
 # main del reto
 if __name__ == "__main__":
@@ -155,8 +158,27 @@ if __name__ == "__main__":
         inputs = input('Seleccione una opción para continuar\n')
         try:
             if int(inputs) == 1:
+                filesize = 0
+                x = 1
+                filesizei = input("Que tamaño de muestra desea cargar: \n1.5pct \n2.10pct \n3.20pct \n4.30pct \n5.50pct \n6.80pct \n7.large \n8.small \n")
+                if int(filesizei) == 1:
+                    filesize = "5pct"
+                if int(filesizei) == 2:
+                    filesize = "10pct"
+                if int(filesizei) == 3:
+                    filesize = "20pct"
+                if int(filesizei) == 4:
+                    filesize = "30pct"
+                if int(filesizei) == 5:
+                    filesize = "50pct"
+                if int(filesizei) == 6:
+                    filesize = "80pct"
+                if int(filesizei) == 7:
+                    filesize = "large"
+                if int(filesizei) == 8:
+                    filesize = "small"
                 print("Cargando información de los archivos ....\n")
-                data = load_data(control)
+                data = load_data(control,filesize)
                 size = lt.size(data["data"])
                 last_3 = lt.getElement(data["data"],1)
                 last_2 = lt.getElement(data["data"],2)
@@ -196,7 +218,41 @@ if __name__ == "__main__":
             elif int(inputs) == 10:
                 id = input("Ingrese un id: ")
                 print_data(control, id)
-
+            
+            elif int(inputs) == 11:
+                x = int(input("Que tipo de TAD desea utilizar: 1.Array_list 2.Single_linked"))
+                control = new_controller(int(x))
+                filesize = 0
+                filesizei = input("Que tamaño de muestra desea cargar: \n1.5pct \n2.10pct \n3.20pct \n4.30pct \n5.50pct \n6.80pct \n7.large \n8.small \n")
+                if int(filesizei) == 1:
+                    filesize = "5pct"
+                if int(filesizei) == 2:
+                    filesize = "10pct"
+                if int(filesizei) == 3:
+                    filesize = "20pct"
+                if int(filesizei) == 4:
+                    filesize = "30pct"
+                if int(filesizei) == 5:
+                    filesize = "50pct"
+                if int(filesizei) == 6:
+                    filesize = "80pct"
+                if int(filesizei) == 7:
+                    filesize = "large"
+                if int(filesizei) == 8:
+                    filesize = "small"
+                print("Cargando información de los archivos ....\n")
+                data = load_data(control,filesize)
+                size = lt.size(data["data"])
+                last_3 = lt.getElement(data["data"],1)
+                last_2 = lt.getElement(data["data"],2)
+                last_1 = lt.getElement(data["data"],3)
+                first_1 = lt.getElement(data["data"], size)
+                first_2 = lt.getElement(data["data"], size-1)
+                first_3 = lt.getElement(data["data"], size-2)
+                print("El total de filas cargadas es: " + str(size)+"\n")
+                print("Estos son los primeros tres elementos de la lista: "+str(first_1)+" , "+str(first_2)+" , "+str(first_3)+"\n")
+                print("Estos son los últimos tres elementos de la lista: "+str(last_1)+" , "+str(last_2)+" , "+str(last_3)+"\n")
+                
             elif int(inputs) == 0:
                 working = False
                 print("\nGracias por utilizar el programa")

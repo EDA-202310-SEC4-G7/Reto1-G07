@@ -44,20 +44,30 @@ dos listas, una para los videos, otra para las categorias de los mismos.
 # Construccion de modelos
 
 
-def new_data_structs():
+def new_data_structs(datatype):
     """
     Inicializa las estructuras de datos del modelo. Las crea de
     manera vacía para posteriormente almacenar la información.
     """
-    data_structs = {
-        "data": None,
-    }
+    datatype = datatype
+    if datatype == 1:
+        data_structs = {
+            "data": None,
+        }
 
-    data_structs["data"] = lt.newList(datastructure="ARRAY_LIST",
-                                     cmpfunction=compare)
+        data_structs["data"] = lt.newList(datastructure="ARRAY_LIST",
+                                        cmpfunction=compare)
 
-    return data_structs
+        return data_structs
+    else:
+        data_structs = {
+            "data": None,
+        }
 
+        data_structs["data"] = lt.newList(datastructure="SINGLE_LINKED",
+                                        cmpfunction=compare)
+
+        return data_structs    
 
 # Funciones para agregar informacion al modelo
 
@@ -199,7 +209,15 @@ def sort_criteria(data_1, data_2):
         _type_: _description_
     """
 
-    return (data_1["Año"] > data_2["Año"])
+    if (data_1["Año"] > data_2["Año"]):
+        return True
+    elif (data_1["Año"] < data_2["Año"]):
+        return False
+    if (data_1["Año"] == data_2["Año"]):
+        if (data_1["Código actividad económica"] > data_2["Código actividad económica"]):
+            return True
+        else:
+            return False
 
 def sort(data_structs):
     """
