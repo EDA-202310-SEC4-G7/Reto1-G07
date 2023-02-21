@@ -52,7 +52,7 @@ def load_data(control,filesize): ###CAMBIOS CARGA DE DATOS###
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-    datafile = "C:/Users/esteb/OneDrive/Desktop/Esteban/EDA/Reto 1/Reto1-G07/Data/DIAN/Salida_agregados_renta_juridicos_AG-"+str(filesize)+".csv"
+    datafile = "DIAN/Salida_agregados_renta_juridicos_AG-"+str(filesize)+".csv"
     input_file = csv.DictReader(open(datafile, encoding='utf-8'))
     for data in input_file:
         answer = model.add_data(control["model"], data)
