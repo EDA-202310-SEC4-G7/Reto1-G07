@@ -59,6 +59,7 @@ def print_menu():
     print("9- Ejecutar Requerimiento 8")
     print("10- Obtener dato dado un ID")
     print("11- Cargar información con un TAD especifico")
+    print("12- Esocger tipo de ordenamiento")
     print("0- Salir")
 
 
@@ -252,7 +253,11 @@ if __name__ == "__main__":
                 print("El total de filas cargadas es: " + str(size)+"\n")
                 print("Estos son los primeros tres elementos de la lista: "+str(first_1)+" , "+str(first_2)+" , "+str(first_3)+"\n")
                 print("Estos son los últimos tres elementos de la lista: "+str(last_1)+" , "+str(last_2)+" , "+str(last_3)+"\n")
+
+            elif int(inputs) == 12:
+                sort = int(input("Elija el algoritmo de ordenamiento que desea usar: \n 1. Selection \n 2. Insertion \n 3. Shell \n"))
                 
+
             elif int(inputs) == 0:
                 working = False
                 print("\nGracias por utilizar el programa")

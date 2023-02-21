@@ -21,6 +21,7 @@
  """
 
 import config as cf
+from DISClib.ADT import list as lt
 import model
 import time
 import csv
@@ -55,7 +56,8 @@ def load_data(control,filesize): ###CAMBIOS CARGA DE DATOS###
     input_file = csv.DictReader(open(datafile, encoding='utf-8'))
     for data in input_file:
         answer = model.add_data(control["model"], data)
-    model.sort(answer)
+        subanswer = lt.subList(answer)
+    model.sort(subanswer, 3)
     return answer
 
 # Funciones de ordenamiento

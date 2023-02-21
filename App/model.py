@@ -219,8 +219,13 @@ def sort_criteria(data_1, data_2):
         else:
             return False
 
-def sort(data_structs):
+def sort(data_structs, sort_type):
     """
     Función encargada de ordenar la lista con los datos
     """
-    sa.sort(data_structs["data"], sort_criteria)
+    if sort_type == 1:
+        se.sort(data_structs["data", sort_criteria])
+    if sort_type == 2:
+        ins.sort(data_structs["data"], sort_criteria)
+    if sort_type == 3:
+        sa.sort(data_structs["data"], sort_criteria)
