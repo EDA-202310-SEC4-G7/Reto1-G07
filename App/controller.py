@@ -51,7 +51,7 @@ def load_data(control,filesize,sort_type): ###CAMBIOS CARGA DE DATOS###
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-    datafile = cf.data_dir+ "Data/DIAN/Salida_agregados_renta_juridicos_AG-"+str(filesize)+".csv"
+    datafile = cf.data_dir+ "DIAN/Salida_agregados_renta_juridicos_AG-"+str(filesize)+".csv"
     input_file = csv.DictReader(open(datafile, encoding='utf-8'))
     for data in input_file:
         answer = model.add_data(control["model"], data)
