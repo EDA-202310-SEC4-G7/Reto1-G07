@@ -256,8 +256,12 @@ if __name__ == "__main__":
 
             elif int(inputs) == 12:
                 sort = int(input("Elija el algoritmo de ordenamiento que desea usar: \n 1. Selection \n 2. Insertion \n 3. Shell \n"))
-                
-
+                if sort == 1:
+                    controller.sortSelection(control)
+                if sort == 2:
+                    controller.sortInsertion(control)
+                if sort == 3:
+                    controller.sortShell(control)
             elif int(inputs) == 0:
                 working = False
                 print("\nGracias por utilizar el programa")

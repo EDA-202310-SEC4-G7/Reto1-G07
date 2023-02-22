@@ -57,17 +57,37 @@ def load_data(control,filesize): ###CAMBIOS CARGA DE DATOS###
     for data in input_file:
         answer = model.add_data(control["model"], data)
         subanswer = lt.subList(answer)
-    model.sort(subanswer, 3)
-    return answer
+    model.sortShell(subanswer)
+    return subanswer
 
 # Funciones de ordenamiento
 
-def sort(control):
+def sortSelection(control):
     """
     Ordena los datos del modelo
     """
     start_time = get_time()
-    model.sort(control["model"])
+    model.sortSelection(control["model"])
+    end_time = get_time()
+    delta_t = delta_time(start_time, end_time)
+    return delta_t
+
+def sortInsertion(control):
+    """
+    Ordena los datos del modelo
+    """
+    start_time = get_time()
+    model.sortInsertion(control["model"])
+    end_time = get_time()
+    delta_t = delta_time(start_time, end_time)
+    return delta_t
+
+def sortShell(control):
+    """
+    Ordena los datos del modelo
+    """
+    start_time = get_time()
+    model.sortShell(control["model"])
     end_time = get_time()
     delta_t = delta_time(start_time, end_time)
     return delta_t
