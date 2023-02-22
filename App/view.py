@@ -1,4 +1,4 @@
-﻿"""
+"""
  * Copyright 2020, Departamento de sistemas y Computación, Universidad
  * de Los Andes
  *
@@ -254,14 +254,6 @@ if __name__ == "__main__":
                 print("Estos son los primeros tres elementos de la lista: "+str(first_1)+" , "+str(first_2)+" , "+str(first_3)+"\n")
                 print("Estos son los últimos tres elementos de la lista: "+str(last_1)+" , "+str(last_2)+" , "+str(last_3)+"\n")
 
-            elif int(inputs) == 12:
-                sort = int(input("Elija el algoritmo de ordenamiento que desea usar: \n 1. Selection \n 2. Insertion \n 3. Shell \n"))
-                if sort == 1:
-                    controller.sortSelection(control)
-                if sort == 2:
-                    controller.sortInsertion(control)
-                if sort == 3:
-                    controller.sortShell(control)
             elif int(inputs) == 0:
                 working = False
                 print("\nGracias por utilizar el programa")
