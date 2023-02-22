@@ -1,4 +1,4 @@
-"""
+﻿"""
  * Copyright 2020, Departamento de sistemas y Computación, Universidad
  * de Los Andes
  *
@@ -241,8 +241,12 @@ if __name__ == "__main__":
                     filesize = "large"
                 if int(filesizei) == 8:
                     filesize = "small"
+
+                sort = int(input("Elija el algoritmo de ordenamiento que desea usar: \n 1. Selection \n 2. Insertion \n 3. Shell \n"))
+                
+                
                 print("Cargando información de los archivos ....\n")
-                data = load_data(control,filesize)
+                data = load_data(control,filesize,sort)
                 size = lt.size(data["data"])
                 last_3 = lt.getElement(data["data"],1)
                 last_2 = lt.getElement(data["data"],2)

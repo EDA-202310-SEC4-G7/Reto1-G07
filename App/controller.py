@@ -47,18 +47,24 @@ def new_controller(datatype):
 
 # Funciones para la carga de datos
 
-def load_data(control,filesize): ###CAMBIOS CARGA DE DATOS###
+def load_data(control,filesize,sort_type): ###CAMBIOS CARGA DE DATOS###
     """
     Carga los datos del reto
     """
     # TODO: Realizar la carga de datos
-    datafile = "DIAN/Salida_agregados_renta_juridicos_AG-"+str(filesize)+".csv"
+    datafile = cf.data_dir+"DIAN/Salida_agregados_renta_juridicos_AG-"+str(filesize)+".csv"
     input_file = csv.DictReader(open(datafile, encoding='utf-8'))
     for data in input_file:
         answer = model.add_data(control["model"], data)
-        subanswer = lt.subList(answer)
-    model.sortShell(subanswer)
-    return subanswer
+        #subanswer = lt.subList(answer,answer[0],lt.size(answer))
+
+    if sort_type == 1:
+        model.sortSelection(answer)
+    if sort_type == 2:
+        model.sortInsertion(answer)
+    if sort_type == 3:
+        model.sortShell(answer)
+    return answer
 
 # Funciones de ordenamiento
 
