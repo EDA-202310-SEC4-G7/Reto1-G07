@@ -179,7 +179,7 @@ if __name__ == "__main__":
                 if int(filesizei) == 8:
                     filesize = "small"
                 print("Cargando información de los archivos ....\n")
-                data = load_data(control,filesize)
+                data = load_data(control,filesize,3)
                 size = lt.size(data["data"])
                 last_3 = lt.getElement(data["data"],1)
                 last_2 = lt.getElement(data["data"],2)
