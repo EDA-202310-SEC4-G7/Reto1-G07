@@ -46,7 +46,7 @@ def new_controller(datatype):
 
 # Funciones para la carga de datos
 
-def load_data(control,filesize): ###CAMBIOS CARGA DE DATOS###
+def load_data(control,filesize,sort_type): ###CAMBIOS CARGA DE DATOS###
     """
     Carga los datos del reto
     """
@@ -55,8 +55,28 @@ def load_data(control,filesize): ###CAMBIOS CARGA DE DATOS###
     input_file = csv.DictReader(open(datafile, encoding='utf-8'))
     for data in input_file:
         answer = model.add_data(control["model"], data)
-    model.sort(answer)
+    
+    if sort_type == 1:
+       
+        start_time = get_time()
+        model.sortSelection(answer)
+        end_time = get_time()
+        delta_t = delta_time(start_time, end_time)
+        print(delta_t)
+    if sort_type == 2:
+        start_time = get_time()
+        model.sortInsertion(answer)
+        end_time = get_time()
+        delta_t = delta_time(start_time, end_time)
+        print(delta_t)
+    if sort_type == 3:
+        start_time = get_time()
+        model.sortShell(answer)
+        end_time = get_time()
+        delta_t = delta_time(start_time, end_time)
+        print(delta_t)
     return answer
+    
 
 # Funciones de ordenamiento
 

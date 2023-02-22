@@ -219,8 +219,22 @@ def sort_criteria(data_1, data_2):
         else:
             return False
 
-def sort(data_structs):
+#def sort(data_structs):
     """
     Función encargada de ordenar la lista con los datos
     """
-    sa.sort(data_structs["data"], sort_criteria)
+#    sa.sort(data_structs["data"], sort_criteria)
+    
+def sortSelection(data_structs):
+    """
+    Función encargada de ordenar la lista con los datos
+    """
+    se.sort(data_structs["data"], sort_criteria)
+
+def sortInsertion(data_structs):
+
+    ins.sort(data_structs["data"], sort_criteria)
+
+def sortShell(data_strucs):
+
+    sa.sort(data_strucs["data"], sort_criteria)
