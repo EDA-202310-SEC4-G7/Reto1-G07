@@ -58,7 +58,7 @@ def print_menu():
     print("8- Ejecutar Requerimiento 7")
     print("9- Ejecutar Requerimiento 8")
     print("10- Obtener dato dado un ID")
-    print("11- Cargar información con un TAD especifico")
+    print("11- Cargar información con un TAD y algoritmo de ordenamiento especifico")
     print("0- Salir")
 
 
@@ -241,7 +241,7 @@ if __name__ == "__main__":
                     filesize = "large"
                 if int(filesizei) == 8:
                     filesize = "small"
-                sort = int(input("Elija el algoritmo de ordenamiento que desea usar: \n 1. Selection \n 2. Insertion \n 3. Shell \n"))
+                sort = int(input("Elija el algoritmo de ordenamiento que desea usar: \n 1. Selection \n 2. Insertion \n 3. Shell \n 4. Merge \n 5. Quick \n"))
                 
                 print("Cargando información de los archivos ....\n")
                 data = load_data(control,filesize,sort)

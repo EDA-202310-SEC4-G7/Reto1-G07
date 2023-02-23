@@ -238,3 +238,11 @@ def sortInsertion(data_structs):
 def sortShell(data_strucs):
 
     sa.sort(data_strucs["data"], sort_criteria)
+    
+def sortMerge(data_strucs):
+    
+    merg.sort(data_strucs["data"], sort_criteria)
+
+def sortQuick(data_strucs):
+    
+    quk.sort(data_strucs["data"], sort_criteria)

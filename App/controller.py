@@ -75,6 +75,18 @@ def load_data(control,filesize,sort_type): ###CAMBIOS CARGA DE DATOS###
         end_time = get_time()
         delta_t = delta_time(start_time, end_time)
         print(delta_t)
+    if sort_type == 4:
+        start_time = get_time()
+        model.sortMerge(answer)
+        end_time = get_time()
+        delta_t = delta_time(start_time, end_time)
+        print(delta_t)    
+    if sort_type == 5:
+        start_time = get_time()
+        model.sortQuick(answer)
+        end_time = get_time()
+        delta_t = delta_time(start_time, end_time)
+        print(delta_t)
     return answer
     
 
