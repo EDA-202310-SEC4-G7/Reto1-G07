@@ -199,7 +199,15 @@ def sort_criteria(data_1, data_2):
         _type_: _description_
     """
 
-    return (data_1["Año"] > data_2["Año"])
+    if (data_1["Año"] > data_2["Año"]):
+        return True
+    elif (data_1["Año"] < data_2["Año"]):
+        return False
+    if (data_1["Año"] == data_2["Año"]):
+        if (data_1["Código actividad económica"] > data_2["Código actividad económica"]):
+            return True
+        else:
+            return False
 
 def sort(data_structs):
     """
