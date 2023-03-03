@@ -150,6 +150,9 @@ def req_8(control):
     req_8 = model.req_8(control["model"])
     return req_8
 
+def dict_a(control):
+    dict_a = model.dict_anio(load_data(control))
+    return dict_a
 
 # Funciones para medir tiempos de ejecucion
 

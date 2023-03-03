@@ -139,7 +139,8 @@ def print_req_8(control):
     # TODO: Imprimir el resultado del requerimiento 8
     print(controller.req_8(control))
 
-
+def print_dict_a(control):
+    print(controller.dict_a(control))
 # Se crea el controlador asociado a la vista
 control = new_controller()
 
@@ -191,7 +192,7 @@ if __name__ == "__main__":
                 print_req_7(control)
 
             elif int(inputs) == 9:
-                print_req_8(control)
+                print_dict_a(control)
 
             elif int(inputs) == 10:
                 id = input("Ingrese un id: ")

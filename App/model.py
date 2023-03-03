@@ -214,3 +214,18 @@ def sort(data_structs):
     Función encargada de ordenar la lista con los datos
     """
     sa.sort(data_structs["data"], sort_criteria)
+
+def dict_anio(data_structs):
+    
+    dict_anio = {}
+    size = lt.size(data_structs["data"])
+    while size > 0:
+        datos = lt.getElement(data_structs["data"],size)
+        anio = str(datos["Año"])
+        if anio in dict_anio:
+            lt.addLast(dict_anio[anio],datos)
+        else:
+            dict_anio[anio] = lt.newList(datastructure = "ARRAY_LIST")
+            lt.addLast(dict_anio[anio],datos)
+        size -=1
+    return dict_anio
