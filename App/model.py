@@ -44,20 +44,30 @@ dos listas, una para los videos, otra para las categorias de los mismos.
 # Construccion de modelos
 
 
-def new_data_structs():
+def new_data_structs(datatype):
     """
     Inicializa las estructuras de datos del modelo. Las crea de
     manera vacía para posteriormente almacenar la información.
     """
-    data_structs = {
-        "data": None,
-    }
+    datatype = datatype
+    if datatype == 1:
+        data_structs = {
+            "data": None,
+        }
 
-    data_structs["data"] = lt.newList(datastructure="ARRAY_LIST",
-                                     cmpfunction=compare)
+        data_structs["data"] = lt.newList(datastructure="ARRAY_LIST",
+                                        cmpfunction=compare)
 
-    return data_structs
+        return data_structs
+    else:
+        data_structs = {
+            "data": None,
+        }
 
+        data_structs["data"] = lt.newList(datastructure="SINGLE_LINKED",
+                                        cmpfunction=compare)
+
+        return data_structs    
 
 # Funciones para agregar informacion al modelo
 
@@ -209,23 +219,30 @@ def sort_criteria(data_1, data_2):
         else:
             return False
 
-def sort(data_structs):
+#def sort(data_structs):
     """
     Función encargada de ordenar la lista con los datos
     """
-    sa.sort(data_structs["data"], sort_criteria)
-
-def dict_anio(data_structs):
+#    sa.sort(data_structs["data"], sort_criteria)
     
-    dict_anio = {}
-    size = lt.size(data_structs["data"])
-    while size > 0:
-        datos = lt.getElement(data_structs["data"],size)
-        anio = str(datos["Año"])
-        if anio in dict_anio:
-            lt.addLast(dict_anio[anio],datos)
-        else:
-            dict_anio[anio] = lt.newList(datastructure = "ARRAY_LIST")
-            lt.addLast(dict_anio[anio],datos)
-        size -=1
-    return dict_anio
+def sortSelection(data_structs):
+    """
+    Función encargada de ordenar la lista con los datos
+    """
+    se.sort(data_structs["data"], sort_criteria)
+
+def sortInsertion(data_structs):
+
+    ins.sort(data_structs["data"], sort_criteria)
+
+def sortShell(data_strucs):
+
+    sa.sort(data_strucs["data"], sort_criteria)
+    
+def sortMerge(data_strucs):
+    
+    merg.sort(data_strucs["data"], sort_criteria)
+
+def sortQuick(data_strucs):
+    
+    quk.sort(data_strucs["data"], sort_criteria)
