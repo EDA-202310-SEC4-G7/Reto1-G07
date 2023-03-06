@@ -147,8 +147,35 @@ def req_4(data_structs):
     Función que soluciona el requerimiento 4
     """
     # TODO: Realizar el requerimiento 4
-    pass
+    x = 1
+    listaporAños = lt.newList(datastructure="ARRAY_LIST")
+    añoA = lt.firstElement(data_structs["data"])["Año"]
+    listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+    while x < lt.size(data_structs["data"]) : 
+        data = lt.getElement(data_structs["data"], x)
+        año = int(data["Año"])
+        if año  == añoA:
+            lt.addLast(listaDAño, data)
+        else:
+            lt.addLast(listaporAños, listaDAño)
+            listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+            lt.addLast(listaDAño, data)
+        x+= 1
+        añoA = int(data["Año"])
+    lt.addLast(listaporAños, listaDAño)
 
+    i = 2
+    listaN = lt.newList(datastructure="ARRAY_LIST")
+    while i < (lt.size(listaporAños)):
+        elm = lt.getElement(listaporAños,(i))
+        sa.sort(elm,cmpcodigo)
+        x = lt.getElement(elm,1)
+        lt.addLast(listaN,x)
+        i+=1
+    return listaN
+    
+def cmpcodigo(data_1,data_2):
+    return int(data_1["Código sector económico"]) > int(data_2["Código sector económico"])
 
 def req_5(data_structs):
     """
