@@ -53,6 +53,7 @@ def new_data_structs(datatype):
     if datatype == 1:
         data_structs = {
             "data": None,
+            "years": None,
         }
 
         data_structs["data"] = lt.newList(datastructure="ARRAY_LIST",
@@ -66,6 +67,7 @@ def new_data_structs(datatype):
 
         data_structs["data"] = lt.newList(datastructure="SINGLE_LINKED",
                                         cmpfunction=compare)
+    
 
         return data_structs    
 
@@ -79,7 +81,10 @@ def add_data(data_structs, data):
     data["Código sector económico"], data["Nombre sector económico"], data["Código subsector económico"],
     data["Nombre subsector económico"], data["Total ingresos netos"], data["Total costos y gastos"], 
     data["Total saldo a pagar"], data["Total saldo a favor"])
+
     lt.addLast(data_structs["data"], d)
+
+    
     return data_structs
 
 def codigoActividadEconomicaSize(control): ### CAMBIOS ### 
@@ -139,7 +144,41 @@ def req_3(data_structs):
     Función que soluciona el requerimiento 3
     """
     # TODO: Realizar el requerimiento 3
-    pass
+
+
+    
+"""
+    years = lt.newList(datastructure="ARRAY_LIST", cmpfunction= compareYears)
+
+    for data in lt.iterator(data_structs["data"]):
+
+        if data["Año"] not in control_listas:
+
+            control_listas.append(data["Año"])
+            lista_anio = lt.newList("ARRAY_LIST")
+            lt.addLast(lista_anio,data)
+
+        else:
+            while data["Año"] == str(anio):
+                lt.addLast(lista_anio,data)
+        anio += 1
+
+    lt.addLast(years,lista_anio)
+    print(lista_anio)
+                
+
+    
+
+    return None
+"""
+        
+            
+        
+            
+            
+
+    
+
 
 
 def req_4(data_structs):
@@ -194,6 +233,26 @@ def compare(data_1, data_2):
         return -1
     else:
         return 0
+    
+def compareYears(year_1, year_2):
+    if year_1["Año"] < year_2["Año"]:
+        return True
+    elif year_1["Año"] > year_2["Año"]:
+        return False
+    elif year_1["Año"] == year_2["Año"]:
+
+        if year_1["Nombre subsector"] < year_2["Nombre subsector"]:
+            return True
+        elif year_1["Nombre subsector"] > year_2["Nombre subsector"]:
+            return False
+        elif year_1["Nombre subsector"] == year_2["Nombre subsector"]:
+
+            if year_1["Total retenciones"] < year_2["Total retenciones"]:
+                return True
+            elif year_1["Total retenciones"] > year_2["Total retenciones"]:
+                return False
+            else:
+                return False
 
 # Funciones de ordenamiento
 
