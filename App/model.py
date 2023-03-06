@@ -145,7 +145,6 @@ def req_3(data_structs):
     """
     # TODO: Realizar el requerimiento 3
 
-
     
 """
     years = lt.newList(datastructure="ARRAY_LIST", cmpfunction= compareYears)
