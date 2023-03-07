@@ -258,10 +258,10 @@ def req_7(data_structs,Top,AnioI,AnioF):
             pos += 1
         anioInicio -= 1
     quk.sort(listaperiodo,cmptotalc_g)
-    count = 0
+    count = 1
     Lista_top = lt.newList(datastructure="ARRAY_LIST")
     
-    while count < N:
+    while count <= N:
         lt.addLast(Lista_top,lt.getElement(listaperiodo,count))
         count +=1
     return Lista_top
