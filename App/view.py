@@ -27,7 +27,8 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import stack as st
 from DISClib.ADT import queue as qu
 assert cf
-#from tabulate import tabulate
+from tabulate import tabulate
+import textwrap
 
 """
 La vista se encarga de la interacción con el usuario
@@ -188,10 +189,23 @@ if __name__ == "__main__":
                 first_1 = lt.getElement(data["data"], size)
                 first_2 = lt.getElement(data["data"], size-1)
                 first_3 = lt.getElement(data["data"], size-2)
-                print("El total de filas cargadas es: " + str(size)+"\n")
-                print("Estos son los primeros tres elementos de la lista: "+str(first_1)+" , "+str(first_2)+" , "+str(first_3)+"\n")
-                print("Estos son los últimos tres elementos de la lista: "+str(last_1)+" , "+str(last_2)+" , "+str(last_3)+"\n")
-
+                table_size = [["El Total de filas cargadas",size]]
+                print (tabulate(table_size, tablefmt="fancy_grid"))
+                
+                print (tabulate({f'{type}':['1','2','3','4','5','6'],\
+                                 'Año':[textwrap.fill(text=textwrap.dedent(text=first_1["Año"])),textwrap.fill(text=textwrap.dedent(text=first_2["Año"])),textwrap.fill(text=textwrap.dedent(text=first_3["Año"])),textwrap.fill(text=textwrap.dedent(text=last_1["Año"])),textwrap.fill(text=textwrap.dedent(text=last_2["Año"])),textwrap.fill(text=textwrap.dedent(text=last_3["Año"]))],\
+                                 "Código actividad económica" : [textwrap.fill(text=textwrap.dedent(text=first_1["Código actividad económica"])),textwrap.fill(text=textwrap.dedent(text=first_2["Código actividad económica"])),textwrap.fill(text=textwrap.dedent(text=first_3["Código actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_1["Código actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_2["Código actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_3["Código actividad económica"]))],\
+                                 "Nombre actividad económica" : [textwrap.fill(text=textwrap.dedent(text=first_1["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=first_2["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=first_3["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_1["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_2["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_3["Nombre actividad económica"]))],\
+                                 "Nombre actividad económica" : [textwrap.fill(text=textwrap.dedent(text=first_1["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=first_2["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=first_3["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_1["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_2["Nombre actividad económica"])),textwrap.fill(text=textwrap.dedent(text=last_3["Nombre actividad económica"]))],\
+                                 "Código sector económico" : [textwrap.fill(text=textwrap.dedent(text=first_1["Código sector económico"])),textwrap.fill(text=textwrap.dedent(text=first_2["Código sector económico"])),textwrap.fill(text=textwrap.dedent(text=first_3["Código sector económico"])),textwrap.fill(text=textwrap.dedent(text=last_1["Código sector económico"])),textwrap.fill(text=textwrap.dedent(text=last_2["Código sector económico"])),textwrap.fill(text=textwrap.dedent(text=last_3["Código sector económico"]))],\
+                                 "Nombre sector económico" : [textwrap.fill(text=textwrap.dedent(text=first_1["Nombre sector económico"])),textwrap.fill(text=textwrap.dedent(text=first_2["Nombre sector económico"])),textwrap.fill(text=textwrap.dedent(text=first_3["Nombre sector económico"])),textwrap.fill(text=textwrap.dedent(text=last_1["Nombre sector económico"])),textwrap.fill(text=textwrap.dedent(text=last_2["Nombre sector económico"])),textwrap.fill(text=textwrap.dedent(text=last_3["Nombre sector económico"]))],\
+                                 "Código subsector económico" : [textwrap.fill(text=textwrap.dedent(text=first_1["Código subsector económico"])),textwrap.fill(text=textwrap.dedent(text=first_2["Código subsector económico"])),textwrap.fill(text=textwrap.dedent(text=first_3["Código subsector económico"])),textwrap.fill(text=textwrap.dedent(text=last_1["Código subsector económico"])),textwrap.fill(text=textwrap.dedent(text=last_2["Código subsector económico"])),textwrap.fill(text=textwrap.dedent(text=last_3["Código subsector económico"]))],\
+                                 "Nombre subsector económico" : [textwrap.fill(text=textwrap.dedent(text=first_1["Nombre subsector económico"])),textwrap.fill(text=textwrap.dedent(text=first_2["Nombre subsector económico"])),textwrap.fill(text=textwrap.dedent(text=first_3["Nombre subsector económico"])),textwrap.fill(text=textwrap.dedent(text=last_1["Nombre subsector económico"])),textwrap.fill(text=textwrap.dedent(text=last_2["Nombre subsector económico"])),textwrap.fill(text=textwrap.dedent(text=last_3["Nombre subsector económico"]))],\
+                                 "Total ingresos netos" :[textwrap.fill(text=textwrap.dedent(text=first_1["Total ingresos netos"])),textwrap.fill(text=textwrap.dedent(text=first_2["Total ingresos netos"])),textwrap.fill(text=textwrap.dedent(text=first_3["Total ingresos netos"])),textwrap.fill(text=textwrap.dedent(text=last_1["Total ingresos netos"])),textwrap.fill(text=textwrap.dedent(text=last_2["Total ingresos netos"])),textwrap.fill(text=textwrap.dedent(text=last_3["Total ingresos netos"]))],\
+                                 "Total costos y gastos" :[textwrap.fill(text=textwrap.dedent(text=first_1["Total costos y gastos"])),textwrap.fill(text=textwrap.dedent(text=first_2["Total costos y gastos"])),textwrap.fill(text=textwrap.dedent(text=first_3["Total costos y gastos"])),textwrap.fill(text=textwrap.dedent(text=last_1["Total costos y gastos"])),textwrap.fill(text=textwrap.dedent(text=last_2["Total costos y gastos"])),textwrap.fill(text=textwrap.dedent(text=last_3["Total costos y gastos"]))],\
+                                 "Total saldo a pagar" :[textwrap.fill(text=textwrap.dedent(text=first_1["Total saldo a pagar"])),textwrap.fill(text=textwrap.dedent(text=first_2["Total saldo a pagar"])),textwrap.fill(text=textwrap.dedent(text=first_3["Total saldo a pagar"])),textwrap.fill(text=textwrap.dedent(text=last_1["Total saldo a pagar"])),textwrap.fill(text=textwrap.dedent(text=last_2["Total saldo a pagar"])),textwrap.fill(text=textwrap.dedent(text=last_3["Total saldo a pagar"]))],\
+                                 "Total saldo a favor" :[textwrap.fill(text=textwrap.dedent(text=first_1["Total saldo a favor"])),textwrap.fill(text=textwrap.dedent(text=first_2["Total saldo a favor"])),textwrap.fill(text=textwrap.dedent(text=first_3["Total saldo a favor"])),textwrap.fill(text=textwrap.dedent(text=last_1["Total saldo a favor"])),textwrap.fill(text=textwrap.dedent(text=last_2["Total saldo a favor"])),textwrap.fill(text=textwrap.dedent(text=last_3["Total saldo a favor"]))]\
+                                 },headers='keys', tablefmt='fancy_grid'))
 
             elif int(inputs) == 2:
                 print_req_1(control)
@@ -253,6 +267,7 @@ if __name__ == "__main__":
                 first_1 = lt.getElement(data["data"], size)
                 first_2 = lt.getElement(data["data"], size-1)
                 first_3 = lt.getElement(data["data"], size-2)
+
                 print("El total de filas cargadas es: " + str(size)+"\n")
                 print("Estos son los primeros tres elementos de la lista: "+str(first_1)+" , "+str(first_2)+" , "+str(first_3)+"\n")
                 print("Estos son los últimos tres elementos de la lista: "+str(last_1)+" , "+str(last_2)+" , "+str(last_3)+"\n")

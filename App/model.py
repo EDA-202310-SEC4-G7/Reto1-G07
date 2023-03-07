@@ -53,7 +53,6 @@ def new_data_structs(datatype):
     if datatype == 1:
         data_structs = {
             "data": None,
-            "years": None,
         }
 
         data_structs["data"] = lt.newList(datastructure="ARRAY_LIST",
@@ -80,10 +79,9 @@ def add_data(data_structs, data):
     d = new_data(data["Año"], data["Código actividad económica"], data["Nombre actividad económica"],
     data["Código sector económico"], data["Nombre sector económico"], data["Código subsector económico"],
     data["Nombre subsector económico"], data["Total ingresos netos"], data["Total costos y gastos"], 
-    data["Total saldo a pagar"], data["Total saldo a favor"])
+    data["Total saldo a pagar"], data["Total saldo a favor"], data["Total retenciones"])
 
     lt.addLast(data_structs["data"], d)
-
     
     return data_structs
 
@@ -93,11 +91,11 @@ def codigoActividadEconomicaSize(control): ### CAMBIOS ###
 
 # Funciones para creacion de datos
 
-def new_data(Año, Codigo_acti_eco,Nombre_acti_eco,Codigo_sec_eco,Nombre_sec_eco,Codigo_sub_eco,Nombre_sub_eco,Total_ing_net,Total_cst_gst,Total_sld_pag,Total_sld_fvr):
+def new_data(Año, Codigo_acti_eco,Nombre_acti_eco,Codigo_sec_eco,Nombre_sec_eco,Codigo_sub_eco,Nombre_sub_eco,Total_ing_net,Total_cst_gst,Total_sld_pag,Total_sld_fvr,Total_ret):
     """
     Crea una nueva estructura para modelar los datos
     """
-    data = {"Año":Año,"Código actividad económica":Codigo_acti_eco,"Nombre actividad económica":Nombre_acti_eco,"Código sector económico":Codigo_sec_eco,"Nombre sector económico":Nombre_sec_eco,"Código subsector económico":Codigo_sub_eco,"Nombre subsector económico":Nombre_sub_eco,"Total ingresos netos":Total_ing_net,"Total costos y gastos":Total_cst_gst,"Total saldo a pagar":Total_sld_pag,"Total saldo a favor":Total_sld_fvr}
+    data = {"Año":Año,"Código actividad económica":Codigo_acti_eco,"Nombre actividad económica":Nombre_acti_eco,"Código sector económico":Codigo_sec_eco,"Nombre sector económico":Nombre_sec_eco,"Código subsector económico":Codigo_sub_eco,"Nombre subsector económico":Nombre_sub_eco,"Total ingresos netos":Total_ing_net,"Total costos y gastos":Total_cst_gst,"Total saldo a pagar":Total_sld_pag,"Total saldo a favor":Total_sld_fvr, "Total retenciones": Total_ret}
     
 
     return data
@@ -145,31 +143,62 @@ def req_3(data_structs):
     """
     # TODO: Realizar el requerimiento 3
 
-    
-"""
-    years = lt.newList(datastructure="ARRAY_LIST", cmpfunction= compareYears)
-
-    for data in lt.iterator(data_structs["data"]):
-
-        if data["Año"] not in control_listas:
-
-            control_listas.append(data["Año"])
-            lista_anio = lt.newList("ARRAY_LIST")
-            lt.addLast(lista_anio,data)
-
+    """Create list of lists by year"""
+    num = 1
+    listByYears = lt.newList(datastructure="ARRAY_LIST")
+    Year_1 = lt.firstElement(data_structs["data"])["Año"]
+    listYear = lt.newList(datastructure="ARRAY_LIST" )
+    while num < lt.size(data_structs["data"]) : 
+        data = lt.getElement(data_structs["data"], num)
+        year = int(data["Año"])
+        if year  == Year_1:
+            lt.addLast(listYear, data)
         else:
-            while data["Año"] == str(anio):
-                lt.addLast(lista_anio,data)
-        anio += 1
+            lt.addLast(listByYears, listYear)
+            listYear = lt.newList(datastructure="ARRAY_LIST" )
+            lt.addLast(listYear, data)
+        num+= 1
+        Year_1 = int(data["Año"])
+    lt.addLast(listByYears, listYear)
 
-    lt.addLast(years,lista_anio)
-    print(lista_anio)
-                
+    #return listByYears["elements"][10]
 
-    
+    """For 2012"""
+    list_2012 = listByYears["elements"][10]
+    for value in range(len(list_2012["elements"])):
+        sublist = list_2012["elements"][value]
+        subsector_info = sublist["Nombre sector económico"], sublist["Total retenciones"]
+        Newlist = lt.newList(datastructure="ARRAY_LIST")
+        lt.addLast(Newlist, subsector_info)
+        print(Newlist)
+        #print (Newlist[subsector])
 
-    return None
-"""
+
+    """For 2013"""
+    list_2013 = listByYears["elements"][9]
+    """For 2014"""
+    list_2014 = listByYears["elements"][8]
+    """For 2015"""
+    list_2015 = listByYears["elements"][7]
+    """For 2016"""
+    list_2016 = listByYears["elements"][6]
+    """For 2017"""
+    list_2017 = listByYears["elements"][5]
+    """For 2018"""
+    list_2018 = listByYears["elements"][4]
+    """For 2019"""
+    list_2019 = listByYears["elements"][3]
+    """For 2020"""
+    list_2020 = listByYears["elements"][2]
+    """For 2021"""
+    list_2021 = listByYears["elements"][1]
+
+
+    """Get the minor value of total retentions"""
+
+    #for year in listByYears[0]:
+     #   return (year)
+
         
             
         
@@ -254,7 +283,6 @@ def compareYears(year_1, year_2):
                 return False
 
 # Funciones de ordenamiento
-
 
 def sort_criteria(data_1, data_2):
     """sortCriteria criterio de ordenamiento para las funciones de ordenamiento
