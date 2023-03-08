@@ -135,7 +135,7 @@ def print_req_7(control):
         Función que imprime la solución del Requerimiento 7 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 7
-    print(controller.req_7(control))
+    print(controller.req_7(control,Topn,AnioI,AnioF))
 
 
 def print_req_8(control):
