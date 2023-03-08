@@ -251,8 +251,10 @@ if __name__ == "__main__":
                 print_req_6(control)
 
             elif int(inputs) == 8:
-                print_req_7(control)
-
+                top = input("Ingrese el top N de las actividades que desea conocer (ej. 3 = Top 3,4 = Top 4 etc.):\n")
+                anioInicial = input("Ingrese el anio inicial del periodo de tiempo en el cual desea consultar el top N:\n")
+                anioFinal = input("Ingrese el anio final del periodo de tiempo en el cual desea consultar el top N:\n")
+                print_req_7(control,top,anioInicial,anioFinal)
             elif int(inputs) == 9:
                 print_dict_a(control)
 
