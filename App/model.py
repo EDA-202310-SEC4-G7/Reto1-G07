@@ -195,7 +195,7 @@ def req_6(data_structs):
     pass
 
 
-def req_7(data_structs):
+def req_7(ddata_structs,Top,AnioI,AnioF):
     """
     Función que soluciona el requerimiento 7
     """
