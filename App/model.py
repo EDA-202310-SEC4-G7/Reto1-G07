@@ -78,7 +78,7 @@ def add_data(data_structs, data):
     d = new_data(data["Año"], data["Código actividad económica"], data["Nombre actividad económica"],
     data["Código sector económico"], data["Nombre sector económico"], data["Código subsector económico"],
     data["Nombre subsector económico"], data["Total ingresos netos"], data["Total costos y gastos"], 
-    data["Total saldo a pagar"], data["Total saldo a favor"])
+    data["Total saldo a pagar"], data["Total saldo a favor"],data["Costos y gastos nómina"])
     lt.addLast(data_structs["data"], d)
     return data_structs
 
@@ -88,11 +88,11 @@ def codigoActividadEconomicaSize(control): ### CAMBIOS ###
 
 # Funciones para creacion de datos
 
-def new_data(Año, Codigo_acti_eco,Nombre_acti_eco,Codigo_sec_eco,Nombre_sec_eco,Codigo_sub_eco,Nombre_sub_eco,Total_ing_net,Total_cst_gst,Total_sld_pag,Total_sld_fvr):
+def new_data(Año, Codigo_acti_eco,Nombre_acti_eco,Codigo_sec_eco,Nombre_sec_eco,Codigo_sub_eco,Nombre_sub_eco,Total_ing_net,Total_cst_gst,Total_sld_pag,Total_sld_fvr,cygn):
     """
     Crea una nueva estructura para modelar los datos
     """
-    data = {"Año":Año,"Código actividad económica":Codigo_acti_eco,"Nombre actividad económica":Nombre_acti_eco,"Código sector económico":Codigo_sec_eco,"Nombre sector económico":Nombre_sec_eco,"Código subsector económico":Codigo_sub_eco,"Nombre subsector económico":Nombre_sub_eco,"Total ingresos netos":Total_ing_net,"Total costos y gastos":Total_cst_gst,"Total saldo a pagar":Total_sld_pag,"Total saldo a favor":Total_sld_fvr}
+    data = {"Año":Año,"Código actividad económica":Codigo_acti_eco,"Nombre actividad económica":Nombre_acti_eco,"Código sector económico":Codigo_sec_eco,"Nombre sector económico":Nombre_sec_eco,"Código subsector económico":Codigo_sub_eco,"Nombre subsector económico":Nombre_sub_eco,"Total ingresos netos":Total_ing_net,"Total costos y gastos":Total_cst_gst,"Total saldo a pagar":Total_sld_pag,"Total saldo a favor":Total_sld_fvr,"Costos y gastos nómina":cygn}
     
 
     return data
@@ -255,7 +255,24 @@ def req_4(data_structs):
     
     return ListaFinalvalores
         
-
+def listaporanios(data_structs):
+    x = 1
+    listaporAños = lt.newList(datastructure="ARRAY_LIST")
+    añoA = lt.firstElement(data_structs["data"])["Año"]
+    listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+    while x <= lt.size(data_structs["data"]) : 
+        data = lt.getElement(data_structs["data"], x)
+        año = int(data["Año"])
+        if año  == añoA:
+            lt.addLast(listaDAño, data)
+        else:
+            lt.addLast(listaporAños, listaDAño)
+            listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+            lt.addLast(listaDAño, data)
+        x+= 1
+        añoA = int(data["Año"])
+    lt.addLast(listaporAños, listaDAño)
+    return listaporAños
 
 def req_5(data_structs):
     """
