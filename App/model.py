@@ -170,63 +170,107 @@ def req_3(data_structs):
     Función que soluciona el requerimiento 3
     """
     # TODO: Realizar el requerimiento 3
-
-    """Create list of lists by year"""
-    num = 1
-    listByYears = lt.newList(datastructure="ARRAY_LIST")
-    Year_1 = lt.firstElement(data_structs["data"])["Año"]
-    listYear = lt.newList(datastructure="ARRAY_LIST" )
-    while num < lt.size(data_structs["data"]) : 
-        data = lt.getElement(data_structs["data"], num)
-        year = int(data["Año"])
-        if year  == Year_1:
-            lt.addLast(listYear, data)
-        else:
-            lt.addLast(listByYears, listYear)
-            listYear = lt.newList(datastructure="ARRAY_LIST" )
-            lt.addLast(listYear, data)
-        num+= 1
-        Year_1 = int(data["Año"])
-    lt.addLast(listByYears, listYear)     
-    #return listByYears["elements"][10]
-
-    """For 2012"""
-    list_2012 = listByYears["elements"][10]
-    for value in range(len(list_2012["elements"])):
-        sublist = list_2012["elements"][value]
-        subsector_info = sublist["Nombre sector económico"], sublist["Total retenciones"]
+    listaporAños = listaporanios(data_structs)
+    anio = 1
+    ListaFinalvalores = lt.newList(datastructure="ARRAY_LIST")
+    while anio <=10:
+        list_anio = listaporAños["elements"][anio]
         Newlist = lt.newList(datastructure="ARRAY_LIST")
-        lt.addLast(Newlist, subsector_info)
-        print(Newlist)
-        #print (Newlist[subsector])
-
-    """For 2013"""
-    list_2013 = listByYears["elements"][9]
-    """For 2014"""
-    list_2014 = listByYears["elements"][8]
-    """For 2015"""
-    list_2015 = listByYears["elements"][7]
-    """For 2016"""
-    list_2016 = listByYears["elements"][6]
-    """For 2017"""
-    list_2017 = listByYears["elements"][5]
-    """For 2018"""
-    list_2018 = listByYears["elements"][4]
-    """For 2019"""
-    list_2019 = listByYears["elements"][3]
-    """For 2020"""
-    list_2020 = listByYears["elements"][2]
-    """For 2021"""
-    list_2021 = listByYears["elements"][1]
-
-    """Get the minor value of total retentions"""
-
-    #for year in listByYears[0]:
-     #   return (year)
-
-        
+        dict_info = {}
+        dict_infoad = {}
+        Newlistad = lt.newList(datastructure="ARRAY_LIST")
+        lt.addLast(Newlist,dict_info)
+        for value in range(lt.size(list_anio)):
             
+            sublist = list_anio["elements"][value]
+            if sublist["Nombre subsector económico"] not in lt.getElement(Newlist,1):
+                
+                tingnet = int(sublist["Total ingresos netos"])
+                tcyg = int(sublist["Total costos y gastos"])
+                tsaldop = int(sublist["Total saldo a pagar"])
+                tsaldof = int(sublist["Total saldo a favor"])
+                tcygn = int(sublist["Costos y gastos nómina"])
+                nombresub = sublist["Nombre subsector económico"]
+                dict_info[nombresub] = tcygn
+                dict_infoad[nombresub] = tcygn
+                dict_infoad[nombresub + "ingnet"] = tingnet
+                dict_infoad[nombresub + "coyga"] = tcyg
+                dict_infoad[nombresub + "ttlsaldoP"] = tsaldop
+                dict_infoad[nombresub + "ttlsaldoF"] = tsaldof
+            else:
+                nombresub = sublist["Nombre subsector económico"]
+                tcygn = int(lt.getElement(Newlist,1)[nombresub])
+                tcynga = int(lt.getElement(Newlistad,1)[nombresub])
+                tingnet = int(lt.getElement(Newlistad,1)[nombresub + "ingnet"])
+                tcyg = int(lt.getElement(Newlistad,1)[nombresub + "coyga"])
+                tsaldop = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoP"])
+                tsaldof = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoF"])
+                dict_info[nombresub] = tcygn + int(sublist["Costos y gastos nómina"])
+                dict_infoad[nombresub] = tcynga + int(sublist["Costos y gastos nómina"])
+                dict_infoad[nombresub + "ingnet"] = tingnet + int(sublist["Total ingresos netos"])
+                dict_infoad[nombresub + "coyga"] = tcyg + int(sublist["Total costos y gastos"])
+                dict_infoad[nombresub + "ttlsaldoP"] = tsaldop + int(sublist["Total saldo a pagar"])
+                dict_infoad[nombresub + "ttlsaldoF"] = tsaldof + int(sublist["Total saldo a pagar"])
+            lt.addFirst(Newlist, dict_info)
+            lt.addFirst(Newlistad,dict_infoad)
+            
+            # if count < (len(list_2012["elements"])):
+            #     lt.removeFirst(Newlist)
+        lista_sector = lt.getElement(Newlist,lt.size(Newlist))
+        lista_sectorad = lt.getElement(Newlistad,lt.size(Newlistad))
+        valores = list(lista_sector.values())
+        sectores = list(lista_sector.keys())
+        posible_m = valores[1]
+        posible_m_s = sectores[1]
+        i = 0
+        while i < len(valores):
+            if valores[i] > posible_m:
+                posible_m = valores[i]
+                posible_m_s = sectores[i]
+                
+            i+=1
         
+        
+        subingresos = lista_sectorad[posible_m_s + "ingnet"]
+        subcostosgastos =lista_sectorad[posible_m_s + "coyga"]
+        subttlsaldopagar = lista_sectorad[posible_m_s + "ttlsaldoP"]
+        subttlsaldofavor = lista_sectorad[posible_m_s + "ttlsaldoF"]
+        
+        
+        
+        
+        lt.addLast(ListaFinalvalores,posible_m_s)
+        lt.addLast(ListaFinalvalores,posible_m)
+        lt.addLast(ListaFinalvalores,subingresos)
+        lt.addLast(ListaFinalvalores,subcostosgastos)
+        lt.addLast(ListaFinalvalores,subttlsaldopagar)
+        lt.addLast(ListaFinalvalores,subttlsaldofavor)
+        anio+=1
+    
+    return ListaFinalvalores
+        
+    
+def cmpcodigo(data_1,data_2):
+    return int(data_1["Código subsector económico"]) > int(data_2["Código subsector económico"])
+
+def listaporanios(data_structs):
+    x = 1
+    listaporAños = lt.newList(datastructure="ARRAY_LIST")
+    añoA = lt.firstElement(data_structs["data"])["Año"]
+    listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+    while x <= lt.size(data_structs["data"]) : 
+        data = lt.getElement(data_structs["data"], x)
+        año = int(data["Año"])
+        if año  == añoA:
+            lt.addLast(listaDAño, data)
+        else:
+            lt.addLast(listaporAños, listaDAño)
+            listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+            lt.addLast(listaDAño, data)
+        x+= 1
+        añoA = int(data["Año"])
+    lt.addLast(listaporAños, listaDAño)
+    return listaporAños
             
             
 
