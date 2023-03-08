@@ -172,7 +172,7 @@ def req_7(control):
     Retorna el resultado del requerimiento 7
     """
     # TODO: Modificar el requerimiento 7
-    req_7 = model.req_7(control["model"])
+    req_7 = model.req_7(control["model"],Topn,AnioI,AnioF)
     return req_7
 
 
