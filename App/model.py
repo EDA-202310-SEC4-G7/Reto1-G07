@@ -147,7 +147,85 @@ def req_4(data_structs):
     Función que soluciona el requerimiento 4
     """
     # TODO: Realizar el requerimiento 4
-    pass
+    listaporAños = listaporanios(data_structs)
+    anio = 1
+    ListaFinalvalores = lt.newList(datastructure="ARRAY_LIST")
+    while anio <=10:
+        list_anio = listaporAños["elements"][anio]
+        Newlist = lt.newList(datastructure="ARRAY_LIST")
+        dict_info = {}
+        dict_infoad = {}
+        Newlistad = lt.newList(datastructure="ARRAY_LIST")
+        lt.addLast(Newlist,dict_info)
+        for value in range(lt.size(list_anio)):
+            
+            sublist = list_anio["elements"][value]
+            if sublist["Nombre subsector económico"] not in lt.getElement(Newlist,1):
+                
+                tingnet = int(sublist["Total ingresos netos"])
+                tcyg = int(sublist["Total costos y gastos"])
+                tsaldop = int(sublist["Total saldo a pagar"])
+                tsaldof = int(sublist["Total saldo a favor"])
+                tcygn = int(sublist["Costos y gastos nómina"])
+                nombresub = sublist["Nombre subsector económico"]
+                dict_info[nombresub] = tcygn
+                dict_infoad[nombresub] = tcygn
+                dict_infoad[nombresub + "ingnet"] = tingnet
+                dict_infoad[nombresub + "coyga"] = tcyg
+                dict_infoad[nombresub + "ttlsaldoP"] = tsaldop
+                dict_infoad[nombresub + "ttlsaldoF"] = tsaldof
+            else:
+                nombresub = sublist["Nombre subsector económico"]
+                tcygn = int(lt.getElement(Newlist,1)[nombresub])
+                tcynga = int(lt.getElement(Newlistad,1)[nombresub])
+                tingnet = int(lt.getElement(Newlistad,1)[nombresub + "ingnet"])
+                tcyg = int(lt.getElement(Newlistad,1)[nombresub + "coyga"])
+                tsaldop = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoP"])
+                tsaldof = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoF"])
+                dict_info[nombresub] = tcygn + int(sublist["Costos y gastos nómina"])
+                dict_infoad[nombresub] = tcynga + int(sublist["Costos y gastos nómina"])
+                dict_infoad[nombresub + "ingnet"] = tingnet + int(sublist["Total ingresos netos"])
+                dict_infoad[nombresub + "coyga"] = tcyg + int(sublist["Total costos y gastos"])
+                dict_infoad[nombresub + "ttlsaldoP"] = tsaldop + int(sublist["Total saldo a pagar"])
+                dict_infoad[nombresub + "ttlsaldoF"] = tsaldof + int(sublist["Total saldo a pagar"])
+            lt.addFirst(Newlist, dict_info)
+            lt.addFirst(Newlistad,dict_infoad)
+            
+            # if count < (len(list_2012["elements"])):
+            #     lt.removeFirst(Newlist)
+        lista_sector = lt.getElement(Newlist,lt.size(Newlist))
+        lista_sectorad = lt.getElement(Newlistad,lt.size(Newlistad))
+        valores = list(lista_sector.values())
+        sectores = list(lista_sector.keys())
+        posible_m = valores[1]
+        posible_m_s = sectores[1]
+        i = 0
+        while i < len(valores):
+            if valores[i] > posible_m:
+                posible_m = valores[i]
+                posible_m_s = sectores[i]
+                
+            i+=1
+        
+        
+        subingresos = lista_sectorad[posible_m_s + "ingnet"]
+        subcostosgastos =lista_sectorad[posible_m_s + "coyga"]
+        subttlsaldopagar = lista_sectorad[posible_m_s + "ttlsaldoP"]
+        subttlsaldofavor = lista_sectorad[posible_m_s + "ttlsaldoF"]
+        
+        
+        
+        
+        lt.addLast(ListaFinalvalores,posible_m_s)
+        lt.addLast(ListaFinalvalores,posible_m)
+        lt.addLast(ListaFinalvalores,subingresos)
+        lt.addLast(ListaFinalvalores,subcostosgastos)
+        lt.addLast(ListaFinalvalores,subttlsaldopagar)
+        lt.addLast(ListaFinalvalores,subttlsaldofavor)
+        anio+=1
+    
+    return ListaFinalvalores
+        
 
 
 def req_5(data_structs):
