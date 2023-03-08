@@ -247,7 +247,8 @@ if __name__ == "__main__":
                 print (data)
                 
             elif int(inputs) == 5:
-                print_req_4(control)
+                data = print_req_4(control)
+                print (data)
 
             elif int(inputs) == 6:
                 print_req_5(control)
