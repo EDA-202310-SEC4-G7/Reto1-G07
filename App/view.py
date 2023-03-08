@@ -130,7 +130,7 @@ def print_req_6(control):
     print(controller.req_6(control))
 
 
-def print_req_7(control):
+def print_req_7(control,Topn,AnioI,AnioF):
     """
         Función que imprime la solución del Requerimiento 7 en consola
     """
