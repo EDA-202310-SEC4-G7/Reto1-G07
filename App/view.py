@@ -135,7 +135,8 @@ def print_req_7(control,Topn,AnioI,AnioF):
         Función que imprime la solución del Requerimiento 7 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 7
-    print(controller.req_7(control,Topn,AnioI,AnioF))
+    data = (controller.req_7(control,Topn,AnioI,AnioF))
+    return data
 
 
 def print_req_8(control):
@@ -254,7 +255,8 @@ if __name__ == "__main__":
                 top = input("Ingrese el top N de las actividades que desea conocer (ej. 3 = Top 3,4 = Top 4 etc.):\n")
                 anioInicial = input("Ingrese el anio inicial del periodo de tiempo en el cual desea consultar el top N:\n")
                 anioFinal = input("Ingrese el anio final del periodo de tiempo en el cual desea consultar el top N:\n")
-                print_req_7(control,top,anioInicial,anioFinal)
+                data = print_req_7(control,top,anioInicial,anioFinal)
+                print (data)
             elif int(inputs) == 9:
                 print_dict_a(control)
 
