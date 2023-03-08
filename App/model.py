@@ -78,7 +78,7 @@ def add_data(data_structs, data):
     d = new_data(data["Año"], data["Código actividad económica"], data["Nombre actividad económica"],
     data["Código sector económico"], data["Nombre sector económico"], data["Código subsector económico"],
     data["Nombre subsector económico"], data["Total ingresos netos"], data["Total costos y gastos"], 
-    data["Total saldo a pagar"], data["Total saldo a favor"])
+    data["Total saldo a pagar"], data["Total saldo a favor"],data["Costos y gastos nómina"])
     lt.addLast(data_structs["data"], d)
     return data_structs
 
@@ -88,11 +88,11 @@ def codigoActividadEconomicaSize(control): ### CAMBIOS ###
 
 # Funciones para creacion de datos
 
-def new_data(Año, Codigo_acti_eco,Nombre_acti_eco,Codigo_sec_eco,Nombre_sec_eco,Codigo_sub_eco,Nombre_sub_eco,Total_ing_net,Total_cst_gst,Total_sld_pag,Total_sld_fvr):
+def new_data(Año, Codigo_acti_eco,Nombre_acti_eco,Codigo_sec_eco,Nombre_sec_eco,Codigo_sub_eco,Nombre_sub_eco,Total_ing_net,Total_cst_gst,Total_sld_pag,Total_sld_fvr,cyg_n):
     """
     Crea una nueva estructura para modelar los datos
     """
-    data = {"Año":Año,"Código actividad económica":Codigo_acti_eco,"Nombre actividad económica":Nombre_acti_eco,"Código sector económico":Codigo_sec_eco,"Nombre sector económico":Nombre_sec_eco,"Código subsector económico":Codigo_sub_eco,"Nombre subsector económico":Nombre_sub_eco,"Total ingresos netos":Total_ing_net,"Total costos y gastos":Total_cst_gst,"Total saldo a pagar":Total_sld_pag,"Total saldo a favor":Total_sld_fvr}
+    data = {"Año":Año,"Código actividad económica":Codigo_acti_eco,"Nombre actividad económica":Nombre_acti_eco,"Código sector económico":Codigo_sec_eco,"Nombre sector económico":Nombre_sec_eco,"Código subsector económico":Codigo_sub_eco,"Nombre subsector económico":Nombre_sub_eco,"Total ingresos netos":Total_ing_net,"Total costos y gastos":Total_cst_gst,"Total saldo a pagar":Total_sld_pag,"Total saldo a favor":Total_sld_fvr,"Costos y gastos nómina":cyg_n}
     
 
     return data
@@ -142,7 +142,7 @@ def req_1(data_structs):
     
     i = 2
     listaN = lt.newList(datastructure="ARRAY_LIST")
-    while i < (lt.size(listaporAños)):
+    while i <= (lt.size(listaporAños)):
         elm = lt.getElement(listaporAños,(i))
         sa.sort(elm,cmptotalsaldop)
         x = lt.getElement(elm,1)
@@ -174,11 +174,95 @@ def req_4(data_structs):
     Función que soluciona el requerimiento 4
     """
     # TODO: Realizar el requerimiento 4
+    listaporAños = listaporanios(data_structs)
+    anio = 1
+    ListaFinalvalores = lt.newList(datastructure="ARRAY_LIST")
+    while anio <=10:
+        list_anio = listaporAños["elements"][anio]
+        Newlist = lt.newList(datastructure="ARRAY_LIST")
+        dict_info = {}
+        dict_infoad = {}
+        Newlistad = lt.newList(datastructure="ARRAY_LIST")
+        lt.addLast(Newlist,dict_info)
+        for value in range(lt.size(list_anio)):
+            
+            sublist = list_anio["elements"][value]
+            if sublist["Nombre subsector económico"] not in lt.getElement(Newlist,1):
+                
+                tingnet = int(sublist["Total ingresos netos"])
+                tcyg = int(sublist["Total costos y gastos"])
+                tsaldop = int(sublist["Total saldo a pagar"])
+                tsaldof = int(sublist["Total saldo a favor"])
+                tcygn = int(sublist["Costos y gastos nómina"])
+                nombresub = sublist["Nombre subsector económico"]
+                dict_info[nombresub] = tcygn
+                dict_infoad[nombresub] = tcygn
+                dict_infoad[nombresub + "ingnet"] = tingnet
+                dict_infoad[nombresub + "coyga"] = tcyg
+                dict_infoad[nombresub + "ttlsaldoP"] = tsaldop
+                dict_infoad[nombresub + "ttlsaldoF"] = tsaldof
+            else:
+                nombresub = sublist["Nombre subsector económico"]
+                tcygn = int(lt.getElement(Newlist,1)[nombresub])
+                tcynga = int(lt.getElement(Newlistad,1)[nombresub])
+                tingnet = int(lt.getElement(Newlistad,1)[nombresub + "ingnet"])
+                tcyg = int(lt.getElement(Newlistad,1)[nombresub + "coyga"])
+                tsaldop = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoP"])
+                tsaldof = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoF"])
+                dict_info[nombresub] = tcygn + int(sublist["Costos y gastos nómina"])
+                dict_infoad[nombresub] = tcynga + int(sublist["Costos y gastos nómina"])
+                dict_infoad[nombresub + "ingnet"] = tingnet + int(sublist["Total ingresos netos"])
+                dict_infoad[nombresub + "coyga"] = tcyg + int(sublist["Total costos y gastos"])
+                dict_infoad[nombresub + "ttlsaldoP"] = tsaldop + int(sublist["Total saldo a pagar"])
+                dict_infoad[nombresub + "ttlsaldoF"] = tsaldof + int(sublist["Total saldo a pagar"])
+            lt.addFirst(Newlist, dict_info)
+            lt.addFirst(Newlistad,dict_infoad)
+            
+            # if count < (len(list_2012["elements"])):
+            #     lt.removeFirst(Newlist)
+        lista_sector = lt.getElement(Newlist,lt.size(Newlist))
+        lista_sectorad = lt.getElement(Newlistad,lt.size(Newlistad))
+        valores = list(lista_sector.values())
+        sectores = list(lista_sector.keys())
+        posible_m = valores[1]
+        posible_m_s = sectores[1]
+        i = 0
+        while i < len(valores):
+            if valores[i] > posible_m:
+                posible_m = valores[i]
+                posible_m_s = sectores[i]
+                
+            i+=1
+        
+        
+        subingresos = lista_sectorad[posible_m_s + "ingnet"]
+        subcostosgastos =lista_sectorad[posible_m_s + "coyga"]
+        subttlsaldopagar = lista_sectorad[posible_m_s + "ttlsaldoP"]
+        subttlsaldofavor = lista_sectorad[posible_m_s + "ttlsaldoF"]
+        
+        
+        
+        
+        lt.addLast(ListaFinalvalores,posible_m_s)
+        lt.addLast(ListaFinalvalores,posible_m)
+        lt.addLast(ListaFinalvalores,subingresos)
+        lt.addLast(ListaFinalvalores,subcostosgastos)
+        lt.addLast(ListaFinalvalores,subttlsaldopagar)
+        lt.addLast(ListaFinalvalores,subttlsaldofavor)
+        anio+=1
+    
+    return ListaFinalvalores
+        
+    
+def cmpcodigo(data_1,data_2):
+    return int(data_1["Código subsector económico"]) > int(data_2["Código subsector económico"])
+
+def listaporanios(data_structs):
     x = 1
     listaporAños = lt.newList(datastructure="ARRAY_LIST")
     añoA = lt.firstElement(data_structs["data"])["Año"]
     listaDAño = lt.newList(datastructure="ARRAY_LIST" )
-    while x < lt.size(data_structs["data"]) : 
+    while x <= lt.size(data_structs["data"]) : 
         data = lt.getElement(data_structs["data"], x)
         año = int(data["Año"])
         if año  == añoA:
@@ -190,19 +274,7 @@ def req_4(data_structs):
         x+= 1
         añoA = int(data["Año"])
     lt.addLast(listaporAños, listaDAño)
-
-    i = 2
-    listaN = lt.newList(datastructure="ARRAY_LIST")
-    while i < (lt.size(listaporAños)):
-        elm = lt.getElement(listaporAños,(i))
-        sa.sort(elm,cmpcodigo)
-        x = lt.getElement(elm,1)
-        lt.addLast(listaN,x)
-        i+=1
-    return listaN
-    
-def cmpcodigo(data_1,data_2):
-    return int(data_1["Código sector económico"]) > int(data_2["Código sector económico"])
+    return listaporAños
 
 def req_5(data_structs):
     """
@@ -269,13 +341,14 @@ def req_7(data_structs,Top,AnioI,AnioF):
 def cmptotalc_g(element_1,element_2):
     return int(element_1["Total costos y gastos"]) < int(element_2["Total costos y gastos"])
 
-def req_8(data_structs):
+def req_8(data_structs,Top,AnioI,AnioF):
     """
     Función que soluciona el requerimiento 8
     """
     # TODO: Realizar el requerimiento 8
-    pass
+    
 
+    
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
