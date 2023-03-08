@@ -159,8 +159,7 @@ def req_3(data_structs):
             lt.addLast(listYear, data)
         num+= 1
         Year_1 = int(data["Año"])
-    lt.addLast(listByYears, listYear)
-
+    lt.addLast(listByYears, listYear)     
     #return listByYears["elements"][10]
 
     """For 2012"""
@@ -172,7 +171,6 @@ def req_3(data_structs):
         lt.addLast(Newlist, subsector_info)
         print(Newlist)
         #print (Newlist[subsector])
-
 
     """For 2013"""
     list_2013 = listByYears["elements"][9]
@@ -192,7 +190,6 @@ def req_3(data_structs):
     list_2020 = listByYears["elements"][2]
     """For 2021"""
     list_2021 = listByYears["elements"][1]
-
 
     """Get the minor value of total retentions"""
 
