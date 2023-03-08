@@ -78,8 +78,8 @@ def add_data(data_structs, data):
     d = new_data(data["Año"], data["Código actividad económica"], data["Nombre actividad económica"],
     data["Código sector económico"], data["Nombre sector económico"], data["Código subsector económico"],
     data["Nombre subsector económico"], data["Total ingresos netos"], data["Total costos y gastos"], 
-    data["Total saldo a pagar"], data["Total saldo a favor"],data["Costos y gastos nómina"])
-    lt.addLast(data_structs["data"], d)
+    data["Total saldo a pagar"], data["Total saldo a favor"],data["Costos y gastos nómina"], data["Total retenciones"])
+    lt.addLast(data_structs["data"],d)
     return data_structs
 
 def codigoActividadEconomicaSize(control): ### CAMBIOS ### 

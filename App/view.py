@@ -29,6 +29,7 @@ from DISClib.ADT import queue as qu
 assert cf
 import textwrap
 from tabulate import tabulate
+import traceback
 
 """
 La vista se encarga de la interacción con el usuario
@@ -103,7 +104,8 @@ def print_req_3(control):
         Función que imprime la solución del Requerimiento 3 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 3
-    print(controller.req_3(control))
+    data = (controller.req_3(control))
+    return data
 
 
 def print_req_4(control):
@@ -111,8 +113,8 @@ def print_req_4(control):
         Función que imprime la solución del Requerimiento 4 en consola
     """
     # TODO: Imprimir el resultado del requerimiento 4
-    print(controller.req_4(control))
-
+    data = (controller.req_4(control))
+    return data
 
 def print_req_5(control):
     """
@@ -321,4 +323,5 @@ if __name__ == "__main__":
                 print("Opción errónea, vuelva a elegir.\n")
         except ValueError:
             print("Ingrese una opción válida.\n")
+            traceback.print_exc()
     sys.exit(0)
