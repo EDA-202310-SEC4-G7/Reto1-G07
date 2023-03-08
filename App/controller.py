@@ -167,7 +167,7 @@ def req_6(control):
     return req_6
 
 
-def req_7(control):
+def req_7(control,Topn,AnioI,AnioF):
     """
     Retorna el resultado del requerimiento 7
     """
