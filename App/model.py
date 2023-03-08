@@ -123,7 +123,36 @@ def req_1(data_structs):
     Función que soluciona el requerimiento 1
     """
     # TODO: Realizar el requerimiento 1
-    pass
+    x = 1
+    listaporAños = lt.newList(datastructure="ARRAY_LIST")
+    añoA = lt.firstElement(data_structs["data"])["Año"]
+    listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+    while x < lt.size(data_structs["data"]) : 
+        data = lt.getElement(data_structs["data"], x)
+        año = int(data["Año"])
+        if año  == añoA:
+            lt.addLast(listaDAño, data)
+        else:
+            lt.addLast(listaporAños, listaDAño)
+            listaDAño = lt.newList(datastructure="ARRAY_LIST" )
+            lt.addLast(listaDAño, data)
+        x+= 1
+        añoA = int(data["Año"])
+    lt.addLast(listaporAños, listaDAño)
+    
+    i = 2
+    listaN = lt.newList(datastructure="ARRAY_LIST")
+    while i <= (lt.size(listaporAños)):
+        elm = lt.getElement(listaporAños,(i))
+        sa.sort(elm,cmptotalsaldop)
+        x = lt.getElement(elm,1)
+        lt.addLast(listaN,x)
+        i+=1
+    return listaN
+
+def cmptotalsaldop(data_1,data_2):
+    return int(data_1["Total saldo a pagar"]) > int(data_2["Total saldo a pagar"])
+
 
 
 def req_2(data_structs):
