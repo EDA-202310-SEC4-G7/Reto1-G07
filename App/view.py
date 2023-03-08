@@ -257,6 +257,7 @@ if __name__ == "__main__":
                 anioFinal = input("Ingrese el anio final del periodo de tiempo en el cual desea consultar el top N:\n")
                 data = print_req_7(control,top,anioInicial,anioFinal)
                 print (data)
+                
             elif int(inputs) == 9:
                 print_dict_a(control)
 
