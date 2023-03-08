@@ -239,11 +239,13 @@ if __name__ == "__main__":
                 },headers='keys', tablefmt='fancy_grid'))               
 
             elif int(inputs) == 3:
-                print_req_2(control)
+                data = print_req_2(control)
+                print (data)
 
             elif int(inputs) == 4:
-                print_req_3(control)
-
+                data = print_req_3(control)
+                print (data)
+                
             elif int(inputs) == 5:
                 print_req_4(control)
 
