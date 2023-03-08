@@ -189,7 +189,7 @@ def req_3(data_structs):
                 tcyg = int(sublist["Total costos y gastos"])
                 tsaldop = int(sublist["Total saldo a pagar"])
                 tsaldof = int(sublist["Total saldo a favor"])
-                tcygn = int(sublist["Costos y gastos nómina"])
+                tcygn = int(sublist["Total retenciones"])
                 nombresub = sublist["Nombre subsector económico"]
                 dict_info[nombresub] = tcygn
                 dict_infoad[nombresub] = tcygn
@@ -205,8 +205,8 @@ def req_3(data_structs):
                 tcyg = int(lt.getElement(Newlistad,1)[nombresub + "coyga"])
                 tsaldop = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoP"])
                 tsaldof = int(lt.getElement(Newlistad,1)[nombresub + "ttlsaldoF"])
-                dict_info[nombresub] = tcygn + int(sublist["Costos y gastos nómina"])
-                dict_infoad[nombresub] = tcynga + int(sublist["Costos y gastos nómina"])
+                dict_info[nombresub] = tcygn + int(sublist["Total retenciones"])
+                dict_infoad[nombresub] = tcynga + int(sublist["Total retenciones"])
                 dict_infoad[nombresub + "ingnet"] = tingnet + int(sublist["Total ingresos netos"])
                 dict_infoad[nombresub + "coyga"] = tcyg + int(sublist["Total costos y gastos"])
                 dict_infoad[nombresub + "ttlsaldoP"] = tsaldop + int(sublist["Total saldo a pagar"])
@@ -214,8 +214,6 @@ def req_3(data_structs):
             lt.addFirst(Newlist, dict_info)
             lt.addFirst(Newlistad,dict_infoad)
             
-            # if count < (len(list_2012["elements"])):
-            #     lt.removeFirst(Newlist)
         lista_sector = lt.getElement(Newlist,lt.size(Newlist))
         lista_sectorad = lt.getElement(Newlistad,lt.size(Newlistad))
         valores = list(lista_sector.values())
@@ -224,7 +222,7 @@ def req_3(data_structs):
         posible_m_s = sectores[1]
         i = 0
         while i < len(valores):
-            if valores[i] > posible_m:
+            if valores[i] < posible_m:
                 posible_m = valores[i]
                 posible_m_s = sectores[i]
                 
