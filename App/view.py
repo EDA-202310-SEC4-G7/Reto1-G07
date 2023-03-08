@@ -211,25 +211,16 @@ if __name__ == "__main__":
             elif int(inputs) == 2:
                 data = print_req_1(control)
                 E2021 = lt.getElement(data,1)
-                print (E2021)
                 E2020 = lt.getElement(data,2)
-                print (E2020)
                 E2019 = lt.getElement(data,3)
-                print (E2019)
                 E2018 = lt.getElement(data,4)
-                print (E2018)
                 E2017 = lt.getElement(data,5)
-                print (E2017)
                 E2016 = lt.getElement(data,6)
-                print (E2016)
                 E2015 = lt.getElement(data,7)
-                print (E2015)
                 E2014 = lt.getElement(data,8)
-                print (E2014)
                 E2013 = lt.getElement(data,9)
-                print (E2013)
                 E2012 = lt.getElement(data,10)
-                print(E2012)
+
                 
                 print (tabulate({f'{type}':['1','2','3','4','5','6','7','8','9','10'],\
                 "Año" : [textwrap.fill(text=textwrap.dedent(text=E2012["Año"])),textwrap.fill(text=textwrap.dedent(text=E2013["Año"])),textwrap.fill(text=textwrap.dedent(text=E2014["Año"])),textwrap.fill(text=textwrap.dedent(text=E2015["Año"])),textwrap.fill(text=textwrap.dedent(text=E2016["Año"])),textwrap.fill(text=textwrap.dedent(text=E2017["Año"])),textwrap.fill(text=textwrap.dedent(text=E2018["Año"])),textwrap.fill(text=textwrap.dedent(text=E2019["Año"])),textwrap.fill(text=textwrap.dedent(text=E2020["Año"])),textwrap.fill(text=textwrap.dedent(text=E2021["Año"]))],\
